@@ -16,8 +16,7 @@ resilience4j.circuitbreaker:
       failureRateThreshold: 50
       automaticTransitionFromOpenToHalfOpenEnabled: true
       permittedNumberOfCallsInHalfOpenState: 3
-      recordExceptions:
-        - java.util.concurrent.TimeoutException
+
 
 resilience4j.timelimiter:
   instances:
@@ -29,6 +28,13 @@ resilience4j.bulkhead:
   instances:
     dbback:
       maxConcurrentCalls: 2
+      maxWaitDuration: 1s
+
+resilience4j.thread-pool-bulkhead:
+  instances:
+    backendC:
+      maxThreadPoolSize: 10
+      coreThreadPoolSize: 10
 
 management:
   health:
