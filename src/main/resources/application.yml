@@ -1,5 +1,9 @@
 #spring.jpa.hibernate.ddl-auto=update
 spring:
+  cache: 
+    cache-names: cache1
+    caffeine:
+      spec: maximumSize=500,expireAfterAccess=10s
   datasource:
     url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/example
     username: root
@@ -16,6 +20,7 @@ resilience4j.circuitbreaker:
       failureRateThreshold: 50
       automaticTransitionFromOpenToHalfOpenEnabled: true
       permittedNumberOfCallsInHalfOpenState: 3
+      waitDurationInOpenState: 20s
 
 
 resilience4j.timelimiter:
